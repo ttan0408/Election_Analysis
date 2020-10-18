@@ -24,9 +24,11 @@ county_votes_total = 0
 county_options = []
 # Declare a empty county dictionary
 county_votes = {}
-#County count and county winning tracker
-county_count = 0
-county_winning_percentage = 0
+# Winning County and Winning county count tracker
+winning_county = ""
+largest_county_count = 0
+#county_winning_percentage = 0
+
 
 # Candidate Options List
 candidate_options = []
@@ -100,10 +102,21 @@ with open(file_to_save, "w") as text_file:
 
         #Print county and save to txt file.
         county_results = (f"{county_name}: {votes_of_county_percentage:.1f}% ({votes_of_county:,})\n")
-             
         print(county_results)
         #Save the county results to out text file
         text_file.write(county_results)
+        #Determine winning count and county
+        # Determine if the vote_of_county is greater then winning county count       
+        if(votes_of_county > largest_county_count):
+          largest_county_count = votes_of_county
+          winning_county = county_name
+
+    largest_county_turnout_summary = (f"------------------------------\n"
+                                      f"Largest County Turnout: {winning_county}\n"
+                                      f"-------------------------------\n")
+    print(largest_county_turnout_summary)
+    #Save the largest county turnout to the text file.
+    text_file.write(largest_county_turnout_summary)
 
     #Iterate through the candidate list
     for candidate_name in candidate_votes:
@@ -124,6 +137,7 @@ with open(file_to_save, "w") as text_file:
         if (votes > winning_count) and (vote_percentage > winning_percentage):
            #if true then set winning_count = votes and winning_percent = voter_percent.
            winning_count = votes
+           winning_candidate = candidate_name
            winning_percentage = vote_percentage
         
     # To do : print out the winning candidate, vote count and percentage to terminal
