@@ -44,6 +44,11 @@ All the code and table summary are shown in the link below :
 Python code :
 https://github.com/ttan0408/Election_Analysis/blob/main/PyPoll.py
 
+Results summary table :
+https://github.com/ttan0408/Election_Analysis/blob/main/election_analysis.txt
+
+
+
 
 
 
