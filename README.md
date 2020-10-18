@@ -47,6 +47,10 @@ https://github.com/ttan0408/Election_Analysis/blob/main/PyPoll.py
 Results summary table :
 https://github.com/ttan0408/Election_Analysis/blob/main/election_analysis.txt
 
+Result Printed to Command Line :
+https://github.com/ttan0408/Election_Analysis/blob/main/Results_Printed_to_Command_Line.PNG
+
+
 
 
 
