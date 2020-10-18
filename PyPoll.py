@@ -17,6 +17,17 @@ file_to_save = "election_analysis.txt"
 # 1. Initialize a total vote counter.
 total_votes = 0
 
+#Initialize County Vote
+county_votes_total = 0
+
+#County Option List
+county_options = []
+# Declare a empty county dictionary
+county_votes = {}
+#County count and county winning tracker
+county_count = 0
+county_winning_percentage = 0
+
 # Candidate Options List
 candidate_options = []
 # Declare a the empty dictionary
@@ -39,9 +50,23 @@ with open(file_to_load,"r") as election_data:
      for row in file_reader:
          #2 . Add to the total vote count
          total_votes +=1
-         
+         #    Add to the county vote count
+         county_votes_total +=1
+
          #Print the candidate name from each row
          candidate_name = row[2]
+         county_name = row[1]
+         
+         # If county name does not match any existing county name
+         if county_name not in county_options:
+             #Add county to the list of county
+             county_options.append(county_name)
+
+             #Begin tracking county votes count
+             county_votes[county_name] = 0
+        
+        #Add a voute to that county's count
+         county_votes[county_name] +=1
 
          #If the candidate does not match any existing candidate
          if candidate_name not in candidate_options:
@@ -60,11 +85,26 @@ with open(file_to_save, "w") as text_file:
     election_results = (f"\nElection Results\n"
                         f"-------------------------\n"
                         f"Total Votes: {total_votes:,}\n"
-                        f"--------------------------\n")
+                        f"--------------------------\n"
+                        f"\nCounty Votes:\n")
     print(election_results, end="")
     #Save the final vote count to the text file.
     text_file.write(election_results)
-                               
+
+    #Iterate through the county list
+    for county_name in county_votes:
+        # Retrive vote count of county
+        votes_of_county = county_votes[county_name]
+        # Calculate the percentage of votes_of_county
+        votes_of_county_percentage = float(votes_of_county)/float(county_votes_total)*100
+
+        #Print county and save to txt file.
+        county_results = (f"{county_name}: {votes_of_county_percentage:.1f}% ({votes_of_county:,})\n")
+             
+        print(county_results)
+        #Save the county results to out text file
+        text_file.write(county_results)
+
     #Iterate through the candidate list
     for candidate_name in candidate_votes:
         # 2. Retrive vote count of a candidate.
