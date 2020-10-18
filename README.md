@@ -41,6 +41,10 @@ For the future election candidates of the Colorado State , they need to work har
 
 All the code and table summary are shown in the link below :
 
+Python code :
+https://github.com/ttan0408/Election_Analysis/blob/main/PyPoll.py
+
+
 
 
 
